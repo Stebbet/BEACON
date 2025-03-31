@@ -21,7 +21,6 @@ class BEACON:
         correlation (Optional[float]): The correlation between the objectives, between -1 and 1
         num_features (Optional[int]): number of features to use for the RFF approximation
         input_dim (Optional[int]): number of input dimensions
-        output_dim (Optional[int]): number of output dimensions
         lengthscale (Optional[float]): length-scale of the RBF kernel
         iteration (int): Iteration of the problem to save, used for file naming when generating multiple problems
     """
@@ -31,7 +30,6 @@ class BEACON:
             correlation: Optional[float] = None,
             num_features: Optional[int] = None,
             input_dim: Optional[int] = None,
-            output_dim: Optional[int] = None,
             lengthscale: Optional[float] = None,
             iteration: int = 0
     ) -> None:
@@ -43,7 +41,6 @@ class BEACON:
             correlation (Optional[float]): The correlation between the objectives, between -1 and 1
             num_features (Optional[int]): number of features to use for the RFF approximation
             input_dim (Optional[int]): number of input dimensions
-            output_dim (Optional[int]): number of output dimensions
             lengthscale (Optional[float]): length-scale of the RBF kernel
             iteration (int): Iteration of the problem to save, used for file naming when generating multiple problems
         """
@@ -52,7 +49,7 @@ class BEACON:
 
         self.num_features = num_features
         self.input_dim = input_dim
-        self.output_dim = output_dim
+        self.output_dim = 2
         self.lengthscale = lengthscale
         self.correlation = correlation
 
@@ -63,8 +60,8 @@ class BEACON:
         self.mixing_matrix: Optional[torch.Tensor] = None
         self.iteration = iteration
 
-        if any([correlation is not None, num_features is not None, input_dim is not None,
-                output_dim is not None, lengthscale is not None]):
+        if any([correlation is not None, num_features is not None, input_dim is not None, lengthscale is not None]):
+
             # Cholesky decompose the mixing matrix
             self.mixing_matrix = torch.as_tensor(
                 np.linalg.cholesky(np.array([[1, correlation], [correlation, 1]])), dtype=torch.float64
@@ -117,7 +114,6 @@ class BEACON:
             mixing_matrix: torch.Tensor,
             lengthscale: float,
             input_dim: int,
-            output_dim: int
     ) -> None:
         """
         If you have the omega values already, you can load them into the class using this function.
@@ -131,7 +127,6 @@ class BEACON:
             mixing_matrix (torch.Tensor): mixing matrix in its Cholesky decomposed form
             lengthscale (float): lengthscale
             input_dim (int): input dimension
-            output_dim (int): output dimension
 
         Returns:
         -------
@@ -145,7 +140,6 @@ class BEACON:
         self.mixing_matrix = mixing_matrix
         self.lengthscale = lengthscale
         self.input_dim = input_dim
-        self.output_dim = output_dim
 
         self.rff_scaling = torch.sqrt(torch.tensor(2.0 / self.num_features, dtype=torch.float64))
 
@@ -170,10 +164,9 @@ class BEACON:
         self.correlation = float(npzfile['correlation'])
         self.lengthscale = float(npzfile['lengthscale'])
         self.input_dim = int(npzfile['input_dim'])
-        self.output_dim = int(npzfile['output_dim'])
 
         assert None not in [self.omegas, self.weights, self.phi, self.num_features, self.correlation,
-                            self.mixing_matrix, self.lengthscale, self.input_dim, self.output_dim]
+                            self.mixing_matrix, self.lengthscale, self.input_dim]
 
         self.rff_scaling = torch.sqrt(torch.tensor(2.0 / self.num_features, dtype=torch.float64))
         npzfile.close()
@@ -197,8 +190,7 @@ class BEACON:
         os.makedirs(self.file_path, exist_ok=True)
         np.savez(f'{self.file_path}/problem.npz', omegas=self.omegas, weights=self.weights, phi=self.phi,
                  num_features=self.num_features, correlation=self.correlation, mixing_matrix=self.mixing_matrix,
-                 lengthscale=self.lengthscale,
-                 input_dim=self.input_dim, output_dim=self.output_dim, lb=lb, ub=ub)
+                 lengthscale=self.lengthscale, input_dim=self.input_dim, output_dim=self.output_dim, lb=lb, ub=ub)
 
 
 class BEACONProblem(Problem):

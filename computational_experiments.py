@@ -11,14 +11,13 @@ from tqdm import tqdm
 from typing import List
 
 
-def generate_beacon_problems(n_vars: List[int], correlation_values: List[float], num_iterations: int, num_features: int, output_dim: int, lengthscale: float, lb: float, ub: float):
+def generate_beacon_problems(n_vars: List[int], correlation_values: List[float], num_iterations: int, num_features: int, lengthscale: float, lb: float, ub: float):
     for n_var in n_vars:
         for correlation in correlation_values:
             for i in range(num_iterations):
                 correlated_problem = BEACON(
                     num_features=num_features,
                     input_dim=n_var,
-                    output_dim=output_dim,
                     lengthscale=lengthscale,
                     correlation=correlation,
                     iteration=i
@@ -98,7 +97,6 @@ def run_computational_experiments(n_vars: List[int], correlation_values: List[fl
 
 
 if __name__ == "__main__":
-    output_dim = 2
     num_features = 1000
     lengthscale = 0.01
     lb = 0.
@@ -109,5 +107,5 @@ if __name__ == "__main__":
 
     num_iterations = 20
 
-    generate_beacon_problems(n_vars, correlation_values, num_iterations, num_features, output_dim, lengthscale, lb, ub)
+    generate_beacon_problems(n_vars, correlation_values, num_iterations, num_features, lengthscale, lb, ub)
     run_computational_experiments(n_vars, correlation_values, lb, ub, num_iterations)
