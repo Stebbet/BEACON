@@ -72,6 +72,44 @@ Example of a problem generated with a correlation of -0.8, a lengthscale of 0.1,
 
 ![Example of a problem generated with a correlation of -0.8 a lengthscale of 0.1 and 1 decision variable](./images/sample_example.png)
 
+## Utility Functions
+
+Assuming you have performed computational experiments using this package, we provide some utility functions to aid with the results analysis
+
+### Plotting Empirical Attainment Front
+
+For plotting the empirical attainment front, you may need to install the package from the [source](https://github.com/nabenabe0928/empirical-attainment-func)
+
+```
+git clone https://github.com/nabenabe0928/empirical-attainment-func
+cd empirical-attainment-func
+pip install .
+```
+
+```python
+from utils import *
+
+nsga_solutions = get_solutions(data_source='data', n_var=10, corr=0.5, algorithm="NSGA2", iterations=20)
+plot_eaf(data=nsga_solutions, name="NSGA2", nvar=10, corr=0.5)
+```
+
+### Plotting Convergence Rates
+
+```python
+from utils import *
+
+n_vars = [1, 5, 10, 20]
+correlations = [1., 0.5, 0., -0.5, -1.]
+
+hv = get_hv_ref_point(data_source='data', n_vars=n_vars, correlations=correlations, algorithms=["NSGA2"], population_size=100, iterations=100)
+
+for nvar in n_vars:
+    for corr in correlations:
+            plot_convergence(data_source='data', hv=hv, n_var=nvar, corr=corr, algorithms=["NSGA2"], iterations=20, save_data=True)
+            plot_convergence_from_hypervolume_data(data_source='./plots/hypervolume_data', n_var=nvar, corr=corr, algorithms=["NSGA2"])
+```
+
+
 ## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for more details.
