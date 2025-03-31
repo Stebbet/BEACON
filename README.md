@@ -72,6 +72,10 @@ Example of a problem generated with a correlation of -0.8, a lengthscale of 0.1,
 
 ![Example of a problem generated with a correlation of -0.8 a lengthscale of 0.1 and 1 decision variable](./images/sample_example.png)
 
+
+## Computational Experiments
+```computational_experiments.py``` shows the code we used to perform the computational experiments in the BEACON paper. It has an estimated execution time of 6+ hours.
+
 ## Utility Functions
 
 Assuming you have performed computational experiments using this package, we provide some utility functions to aid with the results analysis

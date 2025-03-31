@@ -77,14 +77,6 @@ class BEACON:
         # Set the file path for saving problems
         self.file_path = f'./data/n_var_{self.input_dim}/corr_{self.correlation}/{self.iteration}'
 
-    """def get_mixing_matrix(self, rho, output_dim=2) -> torch.Tensor:
-        if output_dim == 2:
-            # Cholesky decomposition of matrix [[1, rho],[rho, 1]]
-            mixing_matrix = torch.tensor([[1, 0], [rho, np.sqrt(1 - (rho ** 2))]], dtype=torch.float64)
-        else:
-            mixing_matrix = np.ones((output_dim, output_dim))  # Start with all ones
-            mixing_matrix[np.triu_indices(output_dim, k=1)] = rho
-        return mixing_matrix"""
 
     def sample(self, x_targets: torch.Tensor) -> torch.Tensor:
         """
