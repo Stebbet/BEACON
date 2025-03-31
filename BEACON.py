@@ -278,7 +278,7 @@ class BEACONProblemOptimiser:
         # Ensure the problem is set up correctly
         assert isinstance(self.problem, BEACONProblem), "Problem must be an instance of BEACONProblem"
 
-    def minimise_correlated_problem(self, n_gen, save_history=False):
+    def minimise_problem(self, n_gen, save_history=False):
         """
         Minimise the correlated problem using the given algorithm using pymoo
 

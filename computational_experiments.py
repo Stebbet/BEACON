@@ -91,7 +91,7 @@ def run_computational_experiments(n_vars: List[int], correlation_values: List[fl
                     for algorithm in algorithms:
                         pbar.set_postfix_str(f"Algorithm: {algorithm.__class__.__name__}", refresh=True)
                         optimisation = BEACONProblemOptimiser(problem, algorithm, lb=lb, ub=ub, iteration=i)
-                        res = optimisation.minimise_correlated_problem(n_gen=n_gen, save_history=False)
+                        res = optimisation.minimise_problem(n_gen=n_gen, save_history=False)
 
                     pbar.update()
 

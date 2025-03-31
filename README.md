@@ -63,7 +63,7 @@ algorithm = NSGA2(pop_size=100)
 optimizer = BEACONProblemOptimiser(problem=problem, algorithm=algorithm, lb=lb, ub=ub, iteration=0)
 
 # Run the optimization
-result = optimizer.minimise_correlated_problem(n_gen=100, save_history=False)
+result = optimizer.minimise_problem(n_gen=100, save_history=False)
 ```
 
 ### Example Problem
