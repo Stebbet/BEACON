@@ -1,4 +1,4 @@
-# BEACON Problem Optimisation
+# BEACON: Continuous Bi-objective Benchmark Problems with Explicit Adjustable COrrelatioN control 
 
 This project provides a framework for optimizing BEACON problems using the `pymoo` library. It includes classes for defining the problem, tracking convergence, and running the optimization.
 
