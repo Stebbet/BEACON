@@ -67,6 +67,12 @@ optimizer = BEACONProblemOptimiser(problem=problem, algorithm=algorithm, lb=lb, 
 result = optimizer.minimise_correlated_problem(n_gen=100, save_history=True)
 ```
 
+### Example Problem
+
+Example of a problem generated with a correlation of -0.8 a lengthscale of 0.1 and 1 decision variable
+
+![Example of a problem generated with a correlation of -0.8 a lengthscale of 0.1 and 1 decision variable](./images/sample_example.png)
+
 ## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for more details.
