@@ -15,6 +15,8 @@ Install the required packages using pip:
 pip install -r requirements.txt
 ```
 
+The **pymoo** package may need compilation for significant performance improvements. If you encounter issues, consider installing the package from source. And see the [pymoo documentation](https://github.com/anyoptimization/pymoo) for more details.
+
 ## Usage
 
 ### BEACON Class

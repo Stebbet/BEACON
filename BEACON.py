@@ -64,7 +64,7 @@ class BEACON:
 
             # Cholesky decompose the mixing matrix
             self.mixing_matrix = torch.as_tensor(
-                np.linalg.cholesky(np.array([[1, correlation], [correlation, 1]])), dtype=torch.float64
+                [[1, 0], [correlation, np.sqrt(1 - np.square(correlation))]], dtype=torch.float64
             )
 
             # Spectral Distribution of the RBF Kernel
