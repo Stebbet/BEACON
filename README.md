@@ -34,7 +34,6 @@ The `BEACONProblemOptimiser` class is used to optimize a BEACON problem using a 
 ### Example
 
 ```python
-import torch
 from pymoo.algorithms.moo.nsga2 import NSGA2
 from BEACON import *
 
@@ -64,12 +63,12 @@ algorithm = NSGA2(pop_size=100)
 optimizer = BEACONProblemOptimiser(problem=problem, algorithm=algorithm, lb=lb, ub=ub, iteration=0)
 
 # Run the optimization
-result = optimizer.minimise_correlated_problem(n_gen=100, save_history=True)
+result = optimizer.minimise_correlated_problem(n_gen=100, save_history=False)
 ```
 
 ### Example Problem
 
-Example of a problem generated with a correlation of -0.8 a lengthscale of 0.1 and 1 decision variable
+Example of a problem generated with a correlation of -0.8, a lengthscale of 0.1, and 1 decision variable
 
 ![Example of a problem generated with a correlation of -0.8 a lengthscale of 0.1 and 1 decision variable](./images/sample_example.png)
 
