@@ -45,6 +45,7 @@ beacon = BEACON(
     input_dim = 2,
     lengthscale = 0.01,
     correlation = 0.5,
+    file_root = 'data',
 )
 
 # Save the problem to a file if needed
