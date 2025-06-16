@@ -22,6 +22,7 @@ class BEACON:
         num_features (Optional[int]): number of features to use for the RFF approximation
         input_dim (Optional[int]): number of input dimensions
         lengthscale (Optional[float]): length-scale of the RBF kernel
+        file_root (Optional[str]): Root directory to save the problems, defaults to 'data'
         iteration (int): Iteration of the problem to save, used for file naming when generating multiple problems
     """
 
@@ -31,6 +32,7 @@ class BEACON:
             num_features: Optional[int] = None,
             input_dim: Optional[int] = None,
             lengthscale: Optional[float] = None,
+            file_root: Optional[str] = 'data',
             iteration: int = 0
     ) -> None:
         """
@@ -42,6 +44,7 @@ class BEACON:
             num_features (Optional[int]): number of features to use for the RFF approximation
             input_dim (Optional[int]): number of input dimensions
             lengthscale (Optional[float]): length-scale of the RBF kernel
+            file_root (Optional[str]): Root directory to save the problems, defaults to 'data'
             iteration (int): Iteration of the problem to save, used for file naming when generating multiple problems
         """
 
@@ -75,7 +78,8 @@ class BEACON:
             self.rff_scaling = torch.sqrt(torch.tensor(2.0 / self.num_features, dtype=torch.float64))
 
         # Set the file path for saving problems
-        self.file_path = f'./data/n_var_{self.input_dim}/corr_{self.correlation}/{self.iteration}'
+        self.file_root = file_root
+        self.file_path = f'./{self.file_root}/n_var_{self.input_dim}/corr_{self.correlation}/{self.iteration}'
 
 
     def sample(self, x_targets: torch.Tensor) -> torch.Tensor:
