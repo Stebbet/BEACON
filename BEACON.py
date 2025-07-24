@@ -238,8 +238,8 @@ class ConvergenceCallback(Callback):
 
     def notify(self, algorithm: Any):
         self.n_evals.append(algorithm.evaluator.n_eval)
-        self.opt_F.append(algorithm.opt[0].F)
-        self.opt_X.append(algorithm.opt[0].X)
+        self.opt_F.append(algorithm.opt)
+        self.opt_X.append(algorithm.opt)
 
 
 class BEACONProblemOptimiser:
